@@ -1,3 +1,8 @@
+更新：
+
+因为这个 wordpress plugin 已经不再维护（最后一次更新2013年），其中的 QQ 在线查询接口已经不存在了(http://webpresence.qq.com/getonline)，会返回404 error. 我这里的这个版本将其注释掉了。
+
+
 === QQ旺旺客服 ===
 Contributors: bxl
 Donate link: http://www.jqdemo.com/qqkefu
