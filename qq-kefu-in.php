@@ -194,7 +194,7 @@ function QQKefu_admin_html($options) {
 	$enableIndex = $options ['enableIndex'] ? ' checked="true"' : '';
 	$enableSingle = $options ['enableSingle'] ? ' checked="true"' : '';
 	$enableBigIcoShowTxt = $options ['enableBigIcoShow'] ? ' checked="true"' : '';
-	$adminHtml .= '<link rel="stylesheet" href="' . plugins_url('qq-kefu/qqkefu.css') . '" type="text/css" media="screen" />';
+	$adminHtml = '<link rel="stylesheet" href="' . plugins_url('qq-kefu/qqkefu.css') . '" type="text/css" media="screen" />';
 	$adminHtml .= '<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7/jquery.min.js"></script>';
 	$adminHtml .= '<div class=wrap id="qqAdmin" style="background-color:white;margin: 0 15px 0 0;">';
 
@@ -325,8 +325,7 @@ function getWangHtml($wang1, $size) {
 //wangwangInter
 function getWangwangInterHtml($wang1, $wangName) {
 	if (!empty($wang1)) {
-		$wang = urlencode($wang1);
-		return '<tr><td><div class="qqSmall" style="overflow:hidden"><a href=" http://amos.us.alitalk.alibaba.com/msg.aw?v=1&uid=' . $wang1 . '&site=' . wang1 . '&s=2" ><img border="0" style="width:18px;height:18px" src="http://amos.us.alitalk.alibaba.com/online.aw?v=1&uid=' . $wang1 . '&site=' . wang1 . '&s=2" style="vertical-align:middle;"/>' . $wangName . '</a></div></td></tr>';
+		return '<tr><td><div class="qqSmall" style="overflow:hidden"><a href=" http://amos.us.alitalk.alibaba.com/msg.aw?v=1&uid=' . $wang1 . '&site=' . $wang1 . '&s=2" ><img border="0" style="width:18px;height:18px" src="http://amos.us.alitalk.alibaba.com/online.aw?v=1&uid=' . $wang1 . '&site=' . $wang1 . '&s=2" style="vertical-align:middle;"/>' . $wangName . '</a></div></td></tr>';
 	}
 }
 
@@ -337,6 +336,8 @@ function QQKefuInit1() {
 	$pos1 = QQKefu_get_option('pos') == "1" ? "left" : "right";
 	$icoSize2 = QQKefu_get_option('icoSize');
 	$qs = QQKefu_get_option('qq');
+	$kefuHtml = "";
+
 	if ($icoSize2 == "1") {
 		$qqOnlineStr = "";
 		if (!empty($qs)) {
@@ -347,7 +348,9 @@ function QQKefuInit1() {
 		}
 
 		if (QQKefu_get_option('enableBigIcoShow')) {
-			$kefuHtml .= '<script>var online= new Array();</script><script src="http://webpresence.qq.com/getonline?Type=1&' . $qqOnlineStr . '"></script>';
+			$kefuHtml .= '<script>var online= new Array();</script>';
+			// Disable QQ online check as it returns 404 now
+			// $kefuHtml .= '<script src="http://webpresence.qq.com/getonline?Type=1&' . $qqOnlineStr . '"></script>';
 		}
 
 	}
@@ -459,4 +462,3 @@ if (QQKefu_get_option('enable')) {
 	add_action('get_footer', 'QQKefuInit');
 
 }
-?>
